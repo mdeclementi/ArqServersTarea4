@@ -18,7 +18,7 @@ exports.postCreateUser = async (req, res, next) => {
             success: true,
             msg: "Actividad 3 - Ejercicio 1 - Recibe body JSON con los campos name, email, password y bio.Almacena el usuario en Base de Datos en memoria cifrando su contraseña.",
             data: newUSer,
-            URLRecuperacion: `http://localhost:8000/api/users/${newUSer._id}`
+            URLConfirmacion: `http://localhost:8000/api/users/${newUSer._id}`
         });
     } catch (error) {
         res.status(400).json({
