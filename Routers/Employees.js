@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const employeesController = require('../Controllers/Employees');
-const { middlewareValidateRequestFields, middlewareValidateRequestValues } = require('../Middleware/GlobalMiddleware');
-const fieldsValidateToken = ['token']
+const { middlewareValidateToken } = require('../Middleware/GlobalMiddleware');
 
-router.get("", middlewareValidateRequestFields("query", fieldsValidateToken, "No se envio Token"), middlewareValidateRequestValues("query", fieldsValidateToken, "Token invalido"), employeesController.getAllEmployees);
-router.get("/oldest", middlewareValidateRequestFields("query", fieldsValidateToken, "No se envio Token"), middlewareValidateRequestValues("query", fieldsValidateToken, "Token invalido"), employeesController.getEmployeesOldest);
-router.get("/NAME", middlewareValidateRequestFields("query", fieldsValidateToken, "No se envio Token"), middlewareValidateRequestValues("query", fieldsValidateToken, "Token invalido"), employeesController.getEmployeesName);
-router.post("", middlewareValidateRequestFields("query", fieldsValidateToken, "No se envio Token"), middlewareValidateRequestValues("query", fieldsValidateToken, "Token invalido"), employeesController.postCreateEmployee);
+router.get("", middlewareValidateToken(), employeesController.getAllEmployees);
+router.get("/oldest", middlewareValidateToken(), employeesController.getEmployeesOldest);
+router.get("/NAME", middlewareValidateToken(), employeesController.getEmployeesName);
+router.post("", middlewareValidateToken(), employeesController.postCreateEmployee);
 
 module.exports = router;
